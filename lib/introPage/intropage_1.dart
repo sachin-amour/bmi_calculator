@@ -1,5 +1,6 @@
 import 'package:fluter_base/introPage/splashpage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnboardingPageData {
   final String imagePath; // local asset path (or URL if you use network images)
@@ -50,15 +51,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
-  void _onNextPressed() {
+  void _onNextPressed() async {
     final lastPage = pages.length - 1;
     if (_currentIndex == lastPage) {
-      // We're on the last page — navigate away (replace with your home screen)
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => SplashPage()));
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('hasSeenOnboarding', true);
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => SplashPage()),
+      );
     } else {
-      // go to next page with an animation
       _pageController.nextPage(
         duration: Duration(milliseconds: 450),
         curve: Curves.easeInOut,
