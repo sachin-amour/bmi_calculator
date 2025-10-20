@@ -165,8 +165,8 @@ class ContactUsPage extends StatelessWidget {
 
   Widget _buildSocialLinks() {
     // Replace these placeholders with your actual profile links
-    const String linkedinUrl = 'https://www.linkedin.com/in/sachin-sharma-profile/';
-    const String facebookUrl = 'https://www.facebook.com/sachin.sharma.page/';
+    const String linkedinUrl = 'https://www.linkedin.com/in/sachin-sharma-amour';
+    const String facebookUrl = 'https:www.facebook.com/share/1FyCVRHYwf/';
     // WhatsApp link format: "whatsapp://send?phone=<country_code><number>"
     const String whatsappUrl = 'whatsapp://send?phone=+917667834733';
 
