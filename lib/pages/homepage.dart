@@ -15,7 +15,7 @@ class homepage extends StatelessWidget {
   void _navigateToProfile(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) =>  profile()),
+      MaterialPageRoute(builder: (context) =>  Profile()),
     );
   }
   @override
@@ -43,18 +43,16 @@ class homepage extends StatelessWidget {
         width: double.infinity,
 
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Calculators',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             ),
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 10),
+
                 bmiButton(),
-                SizedBox(width: 30),
+                SizedBox(width: 20),
 
                 calculatorButton(),
                 SizedBox(height: 20),
@@ -62,11 +60,11 @@ class homepage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
+              child: Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 10),
+
                   bodyfatButton(),
-                  SizedBox(width: 30),
+                  SizedBox(width: 20),
 
                   DailyWaterIntakeButton(),
                   SizedBox(height: 20),
@@ -75,11 +73,10 @@ class homepage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
+              child: Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 10),
                   IdealBodyWeightButton(),
-                  SizedBox(width: 30),
+                  SizedBox(width: 20),
 
                   basic_calculatorButton(),
                   SizedBox(height: 20),
@@ -148,8 +145,8 @@ class calculatorButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -171,8 +168,8 @@ class bmiButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -194,8 +191,8 @@ class bodyfatButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -217,8 +214,8 @@ class DailyWaterIntakeButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -240,8 +237,8 @@ class IdealBodyWeightButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -263,8 +260,8 @@ class basic_calculatorButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 180,
-        width: 180,
+        height: 160,
+        width: 160,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),

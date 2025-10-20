@@ -118,7 +118,7 @@ class _slidlerState extends State<slidler> {
             title: Text('Settings', style: TextStyle(fontSize: 25)),
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => profile()));
+                  context, MaterialPageRoute(builder: (context) => Profile()));
             },
           ),
           // --- MODIFIED Share App ListTile ---

@@ -4,15 +4,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'homepage.dart';
 
-class profile extends StatefulWidget {
+class Profile extends StatefulWidget {
   @override
-  State<profile> createState() => _profileState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _profileState extends State<profile> {
+class _ProfileState extends State<Profile> {
   File? image;
-  var ipicker = ImagePicker();
-  TextEditingController nameController = TextEditingController();
+  final ipicker = ImagePicker();
+  final nameController = TextEditingController();
 
   @override
   void initState() {
@@ -34,16 +34,8 @@ class _profileState extends State<profile> {
     setState(() {});
   }
 
-  Future<void> pickImage_Gallery() async {
-    final pickedFile = await ipicker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      setState(() {});
-    }
-  }
-
-  Future<void> pickImage_Camera() async {
-    final pickedFile = await ipicker.pickImage(source: ImageSource.camera);
+  Future<void> pickImageFrom(ImageSource source) async {
+    final pickedFile = await ipicker.pickImage(source: source);
     if (pickedFile != null) {
       image = File(pickedFile.path);
       setState(() {});
@@ -77,7 +69,7 @@ class _profileState extends State<profile> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => homepage()));
+            Navigator.push(context, MaterialPageRoute(builder: (_) => homepage()));
           },
           icon: Icon(Icons.arrow_back, color: Colors.white, size: 32),
         ),
@@ -100,23 +92,26 @@ class _profileState extends State<profile> {
                   ),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 155),
-                    Text(
-                      'Username',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF025A3E),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        'Username',
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF025A3E),
+                        ),
                       ),
                     ),
                     SizedBox(height: 15),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      width: double.infinity,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: TextField(
-                        controller: nameController, style: TextStyle(fontSize:20 ),
+                        controller: nameController,
+                        style: TextStyle(fontSize: 20),
                         decoration: InputDecoration(
                           hintText: 'Enter Name',
                           filled: true,
@@ -132,15 +127,15 @@ class _profileState extends State<profile> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      width: double.infinity,
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text('Select any'),
+                            builder: (_) => AlertDialog(
+                              title: Text('Select any'),
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -148,7 +143,7 @@ class _profileState extends State<profile> {
                                     leading: Icon(Icons.camera_alt),
                                     title: Text("Camera"),
                                     onTap: () {
-                                      pickImage_Camera();
+                                      pickImageFrom(ImageSource.camera);
                                       Navigator.pop(context);
                                     },
                                   ),
@@ -156,7 +151,7 @@ class _profileState extends State<profile> {
                                     leading: Icon(Icons.photo_outlined),
                                     title: Text("Gallery"),
                                     onTap: () {
-                                      pickImage_Gallery();
+                                      pickImageFrom(ImageSource.gallery);
                                       Navigator.pop(context);
                                     },
                                   ),
@@ -181,9 +176,8 @@ class _profileState extends State<profile> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      width: double.infinity,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: ElevatedButton(
                         onPressed: saveProfileData,
                         child: Text(
@@ -216,7 +210,12 @@ class _profileState extends State<profile> {
                   color: Colors.blueGrey.shade300,
                   size: 220,
                 )
-                    : Image.file(image!, width: 220, height: 220, fit: BoxFit.cover),
+                    : Image.file(
+                  image!,
+                  width: 220,
+                  height: 220,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ],
